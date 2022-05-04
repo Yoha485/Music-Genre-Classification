@@ -2,7 +2,7 @@ import json
 import numpy as np
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
-import tensorflow.keras as keras
+from tensorflow import keras as keras
 
 DATASET_PATH = './Data/data.json'
 
@@ -136,6 +136,8 @@ if __name__ == "__main__":
 
     # train model
     history = model.fit(X_train, y_train, validation_data=(X_validation, y_validation), batch_size=32, epochs=30)
+
+    model.save('./model')
 
     # plot accuracy/error for training and validation
     plot_history(history)
