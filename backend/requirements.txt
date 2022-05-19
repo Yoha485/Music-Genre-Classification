@@ -1,0 +1,7 @@
+tensorflow
+matplotlib
+librosa
+keras
+h5py
+Flask
+flask_cors
