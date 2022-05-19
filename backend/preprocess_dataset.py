@@ -4,14 +4,48 @@ import math
 import librosa
 
 DATASET_PATH = "./Data/genres_original"
-JSON_PATH = "./Data/data.json"
+JSON_PATH = "./Data/data_1.json"
 SAMPLE_RATE = 22050
 TRACK_DURATION = 30  # measured in seconds
 SAMPLES_PER_TRACK = SAMPLE_RATE * TRACK_DURATION
 
 
+def create_mfcc_for_single_track(file_path, json_path, num_mfcc=13, n_fft=2048, hop_length=512, num_segments=10):
+    samples_per_segment = int(SAMPLES_PER_TRACK / num_segments)
+    num_mfcc_vectors_per_segment = math.ceil(samples_per_segment / hop_length)
+
+    signal, sample_rate = librosa.load(file_path, duration=TRACK_DURATION, sr=SAMPLE_RATE)
+    data = []
+
+    for d in range(num_segments):
+
+        # calculate start and finish sample for current segment
+        start = samples_per_segment * d
+        finish = start + samples_per_segment
+
+        # extract mfcc
+        mfcc = librosa.feature.mfcc(
+            signal[start:finish],
+            sample_rate,
+            n_mfcc=num_mfcc,
+            n_fft=n_fft,
+            hop_length=hop_length,
+        )
+        mfcc = mfcc.T
+
+        # store only mfcc feature with expected number of vectors
+        if len(mfcc) == num_mfcc_vectors_per_segment:
+            data.append(mfcc.tolist())
+            print("{}, segment:{}".format(file_path, d + 1))
+    
+    with open(json_path, "w") as fp:
+        json.dump(data, fp, indent=4)
+
+
+
+
 def save_mfcc(
-    dataset_path, json_path, num_mfcc=13, n_fft=2048, hop_length=512, num_segments=5
+    dataset_path, json_path, num_mfcc=13, n_fft=2048, hop_length=512, num_segments=10
 ):
     """Extracts MFCCs from music dataset and saves them into a json file along witgh genre labels.
     :param dataset_path (str): Path to dataset
@@ -45,7 +79,6 @@ def save_mfcc(
 
                 # load audio file
                 file_path = os.path.join(dirpath, f)
-                file_path = file_path.replace('\\', '/')
                 signal, sample_rate = librosa.load(file_path, sr=SAMPLE_RATE)
 
                 # process all segments of audio file
@@ -77,4 +110,4 @@ def save_mfcc(
 
 
 if __name__ == "__main__":
-    save_mfcc(DATASET_PATH, JSON_PATH, num_segments=10)
+    save_mfcc(DATASET_PATH, JSON_PATH)

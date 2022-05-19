@@ -113,7 +113,7 @@ def predict(model, X, y):
     prediction = model.predict(X)
 
     # get index with max value
-    predicted_index = np.argmax(prediction, axis=1)
+    predicted_index = np.argmax(prediction, axis=1)[0]
 
     print("Target: {}, Predicted label: {}".format(y, predicted_index))
 
@@ -137,7 +137,7 @@ if __name__ == "__main__":
     # train model
     history = model.fit(X_train, y_train, validation_data=(X_validation, y_validation), batch_size=32, epochs=30)
 
-    model.save('./model')
+    model.save('./model/classifier2.h5')
 
     # plot accuracy/error for training and validation
     plot_history(history)
