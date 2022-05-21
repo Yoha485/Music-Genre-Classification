@@ -15,8 +15,6 @@ def predict(song_path, json_path):
 
     # convert lists to numpy arrays
     X = np.array(data)
-
-    print(X.shape)
     
     model = tf.keras.models.load_model('./model/classifier.h5')
 

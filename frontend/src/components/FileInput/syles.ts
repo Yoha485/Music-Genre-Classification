@@ -2,7 +2,7 @@ import styled from "styled-components";
 import tw from "twin.macro";
 
 export const FileInputContainer = styled.div`
-  ${tw`w-full h-screen flex flex-col items-center justify-center`}
+  ${tw`px-[5%]`}
 `;
 
 export const DropZone = styled.div`

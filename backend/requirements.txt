@@ -1,7 +1,6 @@
-tensorflow
-matplotlib
-librosa
-keras
-h5py
-Flask
+tensorflow==2.8.0
+matplotlib==3.5.2
+librosa==0.9.1
+h5py==3.6.0
+Flask==2.1.0
 flask_cors

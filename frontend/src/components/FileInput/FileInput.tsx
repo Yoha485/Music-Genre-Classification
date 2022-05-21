@@ -3,7 +3,11 @@ import { FileWithPath, useDropzone } from "react-dropzone";
 import { DropZone, FileInputContainer } from "./syles";
 import axios from "axios";
 
-export const FileInput = () => {
+interface FileInputProps {
+  setResult: Function;
+}
+
+export const FileInput = ({ setResult }: FileInputProps) => {
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone();
 
   const files = acceptedFiles.map((file: FileWithPath) => (
@@ -15,14 +19,13 @@ export const FileInput = () => {
   const onSubmitClicked = () => {
     let file = acceptedFiles[0];
     const formData = new FormData();
-  
+
     formData.append("file", file);
-  
 
     axios
-      .post("http://localhost:5000/api/upload", formData)
+      .post("https://conv-music-classifier.herokuapp.com/api/upload", formData)
       .then((res: any) => {
-        console.log(res.data);
+        setResult(res.data);
       })
       .catch((err: any) => console.error(err));
   };
