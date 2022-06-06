@@ -5,9 +5,10 @@ import axios from "axios";
 
 interface FileInputProps {
   setResult: Function;
+  setLoading: Function;
 }
 
-export const FileInput = ({ setResult }: FileInputProps) => {
+export const FileInput = ({ setResult, setLoading }: FileInputProps) => {
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone();
 
   const files = acceptedFiles.map((file: FileWithPath) => (
@@ -17,6 +18,8 @@ export const FileInput = ({ setResult }: FileInputProps) => {
   ));
 
   const onSubmitClicked = () => {
+    setLoading(true);
+
     let file = acceptedFiles[0];
     const formData = new FormData();
 
@@ -26,8 +29,12 @@ export const FileInput = ({ setResult }: FileInputProps) => {
       .post("https://conv-music-classifier.herokuapp.com/api/upload", formData)
       .then((res: any) => {
         setResult(res.data);
+        setLoading(false);
       })
-      .catch((err: any) => console.error(err));
+      .catch((err: any) => {
+        setLoading(false);
+        console.error(err);
+      });
   };
 
   return (
