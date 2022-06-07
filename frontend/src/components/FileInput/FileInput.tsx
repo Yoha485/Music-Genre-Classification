@@ -1,6 +1,6 @@
 import React from "react";
 import { FileWithPath, useDropzone } from "react-dropzone";
-import { DropZone, FileInputContainer } from "./syles";
+import { DropZone, FileInputContainer, SubmitButton } from "./syles";
 import axios from "axios";
 
 interface FileInputProps {
@@ -33,6 +33,9 @@ export const FileInput = ({ setResult, setLoading }: FileInputProps) => {
       })
       .catch((err: any) => {
         setLoading(false);
+        alert(
+          "Something went wrong. Please make sure you have uploaded WAV file with duration more than 30 seconds"
+        );
         console.error(err);
       });
   };
@@ -41,15 +44,14 @@ export const FileInput = ({ setResult, setLoading }: FileInputProps) => {
     <FileInputContainer>
       <DropZone {...getRootProps({ className: "dropzone" })}>
         <input {...getInputProps()} />
-        <p>Drag 'n' drop some files here, or click to select files</p>
+        {files.length ? (
+          <p>{files}</p>
+        ) : (
+          <p>Drag 'n' drop some files here, or click to select files</p>
+        )}
       </DropZone>
 
-      <button onClick={onSubmitClicked}>Submit</button>
-
-      <aside>
-        <h4>Files</h4>
-        <ul>{files}</ul>
-      </aside>
+      <SubmitButton onClick={onSubmitClicked}>Submit</SubmitButton>
     </FileInputContainer>
   );
 };

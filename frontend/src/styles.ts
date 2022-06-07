@@ -10,4 +10,6 @@ export const ResultContainer = styled.div`
   text-transform: uppercase;
   display: flex;
   justify-content: center;
+  color: rgb(41, 52, 98);
+  min-height: 80px;
 `;

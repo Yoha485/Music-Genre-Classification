@@ -10,7 +10,7 @@ function App() {
   return (
     <AppContainer>
       <ResultContainer>
-        {(loading && <Bars color="#0ead69"></Bars>) || result}
+        {(loading && <Bars color="rgb(242, 76, 76)"></Bars>) || result}
       </ResultContainer>
       <FileInput setResult={setResult} setLoading={setLoading} />
     </AppContainer>
