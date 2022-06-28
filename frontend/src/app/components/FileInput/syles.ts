@@ -1,8 +1,6 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 export const FileInputContainer = styled.div`
-  padding-left: 5%;
-  padding-right: 5%;
   display: flex;
   flex-direction: column;
 `;
@@ -13,8 +11,7 @@ export const DropZone = styled.div`
   border-color: rgb(242, 76, 76);
   color: rgb(41, 52, 98);
 
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding: 1.5rem 2rem;
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
 
@@ -28,6 +25,7 @@ export const DropZone = styled.div`
 export const SubmitButton = styled.button`
   height: 50px;
   border-radius: 15px;
+  font-family: 'Patua One', cursive;
   background-color: rgb(242, 76, 76);
   margin-bottom: 10px;
   color: rgb(41, 52, 98);

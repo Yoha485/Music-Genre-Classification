@@ -1,18 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import { FileInput } from "./components/FileInput/FileInput";
 import { AppContainer, ResultContainer } from "./styles";
 import { Bars } from "react-loader-spinner";
+import { Background } from "./components/Background";
+import useStore from "./store";
 
 function App() {
-  const [result, setResult] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
+  const loading = useStore((state: AppState) => state.loading);
+  const resultGenre = useStore((state: AppState) => state.resultGenre);
 
   return (
     <AppContainer>
-      <ResultContainer>
-        {(loading && <Bars color="rgb(242, 76, 76)"></Bars>) || result}
-      </ResultContainer>
-      <FileInput setResult={setResult} setLoading={setLoading} />
+      <Background />
+      <ResultContainer>{(loading && <Bars color="rgb(242, 76, 76)"></Bars>) || resultGenre}</ResultContainer>
+      <FileInput />
     </AppContainer>
   );
 }
