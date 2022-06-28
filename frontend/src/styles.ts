@@ -1,15 +1,18 @@
-import styled from "styled-components";
-import tw from "twin.macro";
+import { createGlobalStyle } from "styled-components";
 
-export const AppContainer = styled.div`
-  ${tw`w-full h-screen flex flex-col items-center justify-center`}
-`;
+export const GlobalStyles = createGlobalStyle`
+  body {
+    background-color: rgb(236, 155, 59);
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-export const ResultContainer = styled.div`
-  ${tw`text-4xl md:text-6xl`}
-  text-transform: uppercase;
-  display: flex;
-  justify-content: center;
-  color: rgb(41, 52, 98);
-  min-height: 80px;
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+      monospace;
+  }
 `;
