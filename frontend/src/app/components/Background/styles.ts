@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 import mountain1 from "../../../assets/images/mountain1.svg";
 import mountain2 from "../../../assets/images/mountain2.svg";

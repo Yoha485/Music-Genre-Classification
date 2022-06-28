@@ -25,7 +25,7 @@ export const DropZone = styled.div`
 export const SubmitButton = styled.button`
   height: 50px;
   border-radius: 15px;
-  font-family: 'Patua One', cursive;
+  font-family: "Patua One", cursive;
   background-color: rgb(242, 76, 76);
   margin-bottom: 10px;
   color: rgb(41, 52, 98);
