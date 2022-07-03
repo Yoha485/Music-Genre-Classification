@@ -10,11 +10,11 @@ export const AppContainer = styled.div`
 `;
 
 export const ResultContainer = styled.div`
-  font-size: 3.75rem; /* 60px */
+  font-size: 3.75rem;
   line-height: 1;
   text-transform: uppercase;
   display: flex;
   justify-content: center;
-  color: rgb(41, 52, 98);
+
   min-height: 80px;
 `;
