@@ -5,12 +5,12 @@ export const TitleContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  top: 180px;
+  top: 16%;
 
   text-align: center;
   font-size: 60px;
 
   @media screen and (max-width: 525px) {
-    top: 70px;
+    top: 10.5%;
   }
 `;
